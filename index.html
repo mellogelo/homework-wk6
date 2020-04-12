@@ -13,34 +13,12 @@
         <!-- Submit Button -->
         <input id="select-city" type="submit" value="How's the Weather?">
     </form>
-    <div class="result"></div>
+    <div class="result-div">
+        <!-- Input Results Go Here -->
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript"> // This is our API key. Add your own API key between the ""
-
-    function searchCity(cityName) {
-    
-    var APIKey = "e1b693a3f9fca26b298ba8ab0db6b5ec";
-     // Here we are building the URL we need to query the database
-    var queryURL = "api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + APIKey;
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      // We store all of the retrieved data inside of an object called "response"
-      .then(function(response) {
-          console.log(response);
-      })
-
-    }
-
-    $("#select-city").on("click", function(event) {
-    event.preventDefault();
-    var inputArtist = $("#artist-input").val().trim();
-    searchBandsInTown(inputArtist);
-  });
-      
-</script>    
+    <script src="script.js"></script>
+    <script type="text/javascript"></script>
 </body>
 </html>
