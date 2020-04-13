@@ -35,36 +35,52 @@ function searchCity(cityName) {
         cityHumidRes = $("<p>").text("Humidity: " + humid + "%")
         cityWindSpdRes = $("<p>").text("Wind Speed: " + windSpd + " MPH")
         // cityUv = $("<div>").addClass("UV-Index").text()  UV INDEX
+
         $(".result-div").empty();  
         $(".result-div").append(cityNameDate, cityTempRes, cityHumidRes, cityWindSpdRes)
+
+        forecast = response.list;
+        forecast = forecast.slice
+
+        for (var i = 5; i < forecast.length; i++) {
+            temp5 = (forecast[i].main.temp - 273.15) * 1.80 + 32
+
+            // forecast.shift()
+            forecastDiv = $("<div>");
+            forecastTemp = $("<p>").text("Temp " + temp5.toFixed(2))
+            forecastHumid = $("<p>").text("Humid " + forecast[i].main.humidity)
+            forecastDiv.append(forecastTemp)
+            forecastDiv.append(forecastHumid)
+            // $(".forecast-div").empty();
+            $(".forecast-div").prepend(forecastDiv) 
+        }
       })
 
     }
 
-    // adds to history result div - creates a div
-    function searchHistory() {
-        $(".search-history").empty();
-        for (var i = 0; i < cityHistory.length; i++) {
-            var historyEl = $("<button>");
-            historyEl.addClass("history")
-            historyEl.attr("city-name", cityHistory[i])
-            historyEl.text(cityHistory[i]);
-            $(".search-history").append(historyEl);
-        }
+// adds to history result div - creates a div
+function searchHistory() {
+    $(".search-history").empty();
+    for (var i = 0; i < cityHistory.length; i++) {
+        var historyEl = $("<button>");
+        historyEl.addClass("history")
+        historyEl.attr("city-name", cityHistory[i])
+        historyEl.text(cityHistory[i]);
+        $(".search-history").append(historyEl);
     }
+}
     
-    // click event for input value
-    $("#select-city").on("click", function(event) {
-         event.preventDefault();
-         var inputCity = $("#city-input").val().trim();
-         cityHistory.push(inputCity);
-         searchCity(inputCity);
-         searchHistory();
-        });
-    
-    // click event to only classes with history > apply function
-    $(document).on("click", ".history", clickHistory);
-
-
+// click event for input value
+$("#select-city").on("click", function(event) {
+    event.preventDefault();
+    var inputCity = $("#city-input").val().trim();
+    cityHistory.push(inputCity);
+    searchCity(inputCity);
     searchHistory();
+    });
+    
+// click event to only classes with history > apply function
+$(document).on("click", ".history", clickHistory);
+
+searchHistory();
 
