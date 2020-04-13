@@ -7,6 +7,10 @@ var currentSecond = date.getSeconds()
 var cityHistory = [];
 
 
+function clickHistory() {
+    thisCity = $(this).attr("city-name");
+    searchCity(thisCity);
+}
 
 function searchCity(cityName) {
     
@@ -31,7 +35,7 @@ function searchCity(cityName) {
         cityHumidRes = $("<p>").text("Humidity: " + humid + "%")
         cityWindSpdRes = $("<p>").text("Wind Speed: " + windSpd + " MPH")
         // cityUv = $("<div>").addClass("UV-Index").text()  UV INDEX
-          
+        $(".result-div").empty();  
         $(".result-div").append(cityNameDate, cityTempRes, cityHumidRes, cityWindSpdRes)
       })
 
@@ -41,7 +45,8 @@ function searchCity(cityName) {
     function searchHistory() {
         $(".search-history").empty();
         for (var i = 0; i < cityHistory.length; i++) {
-            var historyEl = $("<div>");
+            var historyEl = $("<button>");
+            historyEl.addClass("history")
             historyEl.attr("city-name", cityHistory[i])
             historyEl.text(cityHistory[i]);
             $(".search-history").append(historyEl);
@@ -49,7 +54,6 @@ function searchCity(cityName) {
     }
     
     // click event for input value
-    
     $("#select-city").on("click", function(event) {
          event.preventDefault();
          var inputCity = $("#city-input").val().trim();
@@ -57,5 +61,10 @@ function searchCity(cityName) {
          searchCity(inputCity);
          searchHistory();
         });
-        
+    
+    // click event to only classes with history > apply function
+    $(document).on("click", ".history", clickHistory);
+
+
     searchHistory();
+
