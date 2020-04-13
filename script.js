@@ -40,11 +40,8 @@ function searchCity(cityName) {
         $(".result-div").append(cityNameDate, cityTempRes, cityHumidRes, cityWindSpdRes)
 
         forecast = response.list;
-        forecast = forecast.slice
-
         for (var i = 5; i < forecast.length; i++) {
             temp5 = (forecast[i].main.temp - 273.15) * 1.80 + 32
-
             // forecast.shift()
             forecastDiv = $("<div>");
             forecastTemp = $("<p>").text("Temp " + temp5.toFixed(2))
@@ -62,7 +59,7 @@ function searchCity(cityName) {
 function searchHistory() {
     $(".search-history").empty();
     for (var i = 0; i < cityHistory.length; i++) {
-        var historyEl = $("<button>");
+        var historyEl = $("<div>");
         historyEl.addClass("history")
         historyEl.attr("city-name", cityHistory[i])
         historyEl.text(cityHistory[i]);

@@ -5,23 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Homework 6</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-    <form>
-        <!-- Text Input Box -->
-        <input type="text" id="city-input"><br>
-        <!-- Submit Button -->
-        <input id="select-city" type="submit" value="How's the Weather?">
-    </form>
-    <div class="search-history">
-        <!-- Search History Go Here -->
-    </div>
-    <div class="result-div">
-        <!-- Input Results Go Here -->
-    </div>
-    <div class="forecast-div">
-        <!-- Forecast Results Go Here -->
-    </div>
+    <!-- Text Input Box -->
+    <section class="hero is-dark">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              Weather Dashboard
+            </h1>
+          </div>
+        </div>
+      </section>
+    
+    <div class="columns">
+        <div class="column is-one-third search-col">
+            <form>
+                <h3>Search for a City:</h3>
+                <div class ="field is-grouped">
+                    <!-- Text Input Box -->
+                    <input class="input is-rounded" id="city-input" type="text" placeholder="Rounded input">
+                    <!-- Submit Button -->
+                    <button class="button is-primary" id="select-city" type="submit" value="How's the Weather?">Search</button>
+                </div>
+            </form>
+            <div class="search-history">
+                <!-- Search History Go Here -->
+            </div>
+        </div>
+        <div class="column">
+            <div class="result-div">
+                <!-- Input Results Go Here -->
+            </div>
+            <div class="forecast-div">
+                <!-- Forecast Results Go Here -->
+            </div>
+        </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>

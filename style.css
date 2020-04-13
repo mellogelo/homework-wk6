@@ -1,0 +1,16 @@
+.hero {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.columns {
+    margin: auto;
+}
+
+.search-col {
+    background-color: lightgray;
+}
+
+#city-input {
+    width: 75%;
+}
