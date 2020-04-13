@@ -4,6 +4,9 @@ var currentDay = date.getDate();
 var currentHour = date.getHours();
 var currentMinute = date.getMinutes();
 var currentSecond = date.getSeconds()
+var cityHistory = [];
+
+
 
 function searchCity(cityName) {
     
@@ -34,9 +37,25 @@ function searchCity(cityName) {
 
     }
 
+    // adds to history result div - creates a div
+    function searchHistory() {
+        $(".search-history").empty();
+        for (var i = 0; i < cityHistory.length; i++) {
+            var historyEl = $("<div>");
+            historyEl.attr("city-name", cityHistory[i])
+            historyEl.text(cityHistory[i]);
+            $(".search-history").append(historyEl);
+        }
+    }
+    
     // click event for input value
+    
     $("#select-city").on("click", function(event) {
-    event.preventDefault();
-    var inputCity = $("#city-input").val().trim();
-    searchCity(inputCity);
-  });
+         event.preventDefault();
+         var inputCity = $("#city-input").val().trim();
+         cityHistory.push(inputCity);
+         searchCity(inputCity);
+         searchHistory();
+        });
+        
+    searchHistory();
