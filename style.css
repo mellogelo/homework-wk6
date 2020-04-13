@@ -21,12 +21,25 @@ body {
     background-color: white;
 }
 
+.result-div h1 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.result-div p {
+    line-height: 2.6;
+}
+
 .history {
     background-color: white;
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 20px;
+}
+
+.forecast p {
+    font-size: 10px;
 }
 
 .forecast {

@@ -31,31 +31,50 @@ function searchCity(cityName) {
         windSpd = response.list[0].wind.speed;
 
         cityNameDate = $("<h1>").text(response.city.name);
-        cityTempRes = $("<p>").text("Temperature (F): " + tempF.toFixed(2))
+        cityTempRes = $("<p>").text("Temperature (F): " + tempF.toFixed(2) + "°F")
         cityHumidRes = $("<p>").text("Humidity: " + humid + "%")
         cityWindSpdRes = $("<p>").text("Wind Speed: " + windSpd + " MPH")
         // cityUv = $("<div>").addClass("UV-Index").text()  UV INDEX
 
-        $(".result-div").empty();  
+        $(".result-div").empty();
+        $(".forecast-div").empty()
         $(".result-div").append(cityNameDate, cityTempRes, cityHumidRes, cityWindSpdRes)
 
         forecast = response.list;
         for (var i = 0; i < forecast.length; i++) {
             if (i === 5) { break; }
             temp5 = (forecast[i].main.temp - 273.15) * 1.80 + 32
-            // forecast.shift()
             forecastDiv = $("<div>");
             forecastDiv.addClass("forecast")
-            forecastTemp = $("<p>").text("Temp " + temp5.toFixed(2))
-            forecastHumid = $("<p>").text("Humid " + forecast[i].main.humidity)
+            forecastTemp = $("<p>").text("Temp " + temp5.toFixed(2) + "°F")
+            forecastHumid = $("<p>").text("Humid " + forecast[i].main.humidity + "%")
             forecastDiv.append(forecastTemp)
             forecastDiv.append(forecastHumid)
-            // $(".forecast-div").empty();
-            $(".forecast-div").prepend(forecastDiv) 
+            $(".forecast-div").append(forecastDiv)
         }
-      })
 
+        long = response.city.coord.lon;
+        lat = response.city.coord.lat;
+        console.log(long)
+        searchUv(long, lat);
+      })
     }
+
+// UV Index
+function searchUv(long, lat) {
+    ApiKey = "e1b693a3f9fca26b298ba8ab0db6b5ec";
+    var queryURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + ApiKey + "&lat=" + lat + "&lon=" + long;
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    })
+    .then(function(response) {
+        UvIndex = response.value;
+        UvIndexText = $("<p>").html("UV Index: " + UvIndex)
+        $(".result-div").append(UvIndexText)
+
+    });
+}
 
 // adds to history result div - creates a div
 function searchHistory() {
