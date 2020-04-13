@@ -3,14 +3,41 @@
     margin-bottom: 15px;
 }
 
-.columns {
-    margin: auto;
+body {
+    background-color: whitesmoke;
+    height: 100vh;
 }
 
-.search-col {
-    background-color: lightgray;
+.columns {
+    padding-left: 15px;
 }
 
 #city-input {
     width: 75%;
+}
+
+.result-div {
+    padding: 15px;
+    background-color: white;
+}
+
+.history {
+    background-color: white;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 20px;
+}
+
+.forecast {
+    background-color: teal;
+    float: left;
+    padding: 15px;
+    color: white;
+    margin-right: 10px;
+}
+
+.is-grouped {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

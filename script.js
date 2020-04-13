@@ -40,10 +40,12 @@ function searchCity(cityName) {
         $(".result-div").append(cityNameDate, cityTempRes, cityHumidRes, cityWindSpdRes)
 
         forecast = response.list;
-        for (var i = 5; i < forecast.length; i++) {
+        for (var i = 0; i < forecast.length; i++) {
+            if (i === 5) { break; }
             temp5 = (forecast[i].main.temp - 273.15) * 1.80 + 32
             // forecast.shift()
             forecastDiv = $("<div>");
+            forecastDiv.addClass("forecast")
             forecastTemp = $("<p>").text("Temp " + temp5.toFixed(2))
             forecastHumid = $("<p>").text("Humid " + forecast[i].main.humidity)
             forecastDiv.append(forecastTemp)
