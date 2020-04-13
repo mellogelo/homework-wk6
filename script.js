@@ -1,9 +1,8 @@
-var date = new Date();
-var currentMonth = date.getMonth() + 1;
-var currentDay = date.getDate();
-var currentHour = date.getHours();
-var currentMinute = date.getMinutes();
-var currentSecond = date.getSeconds()
+// var date = new Date();
+
+var today = new Date();
+var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+
 var cityHistory = [];
 
 
@@ -30,11 +29,10 @@ function searchCity(cityName) {
         humid = response.list[0].main.humidity;
         windSpd = response.list[0].wind.speed;
 
-        cityNameDate = $("<h1>").text(response.city.name);
+        cityNameDate = $("<h1>").text(response.city.name + " (" + date + ")");
         cityTempRes = $("<p>").text("Temperature (F): " + tempF.toFixed(2) + "°F")
         cityHumidRes = $("<p>").text("Humidity: " + humid + "%")
         cityWindSpdRes = $("<p>").text("Wind Speed: " + windSpd + " MPH")
-        // cityUv = $("<div>").addClass("UV-Index").text()  UV INDEX
 
         $(".result-div").empty();
         $(".forecast-div").empty()
